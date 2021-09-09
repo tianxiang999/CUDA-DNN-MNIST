@@ -27,6 +27,7 @@ run:
 	mkdir -p ${LOGS_DIR}
 	sudo ./${BUILD_DIR}/runapp
 
+
 run_experiments:
 	mkdir -p ${LOGS_DIR}
 	python3 run_experiments.py
