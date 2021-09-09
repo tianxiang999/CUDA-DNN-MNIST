@@ -20,11 +20,12 @@ dataset:
 
 build: FORCE
 	mkdir -p ${BUILD_DIR}
-	nvcc ${CPU_SOURCE_FILES} ${GPU_SOURCE_FILES} -lineinfo -o ${BUILD_DIR}/${EXEC_FILE}
+	nvcc -I. -arch sm_75 ${CPU_SOURCE_FILES} ${GPU_SOURCE_FILES} -lineinfo -o ${BUILD_DIR}/${EXEC_FILE}
+	g++ -o ${BUILD_DIR}/runapp ${BUILD_DIR}/${EXEC_FILE} -lucuda -L/usr/local/gdev/lib64/ -lgdev
 
 run:
 	mkdir -p ${LOGS_DIR}
-	./${BUILD_DIR}/${EXEC_FILE}
+	sudo ./${BUILD_DIR}/runapp
 
 run_experiments:
 	mkdir -p ${LOGS_DIR}
